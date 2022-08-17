@@ -1,5 +1,7 @@
-package com.samsonmarikwa.customer;
+package com.samsonmarikwa.customer.controller;
 
+import com.samsonmarikwa.customer.service.CustomerService;
+import com.samsonmarikwa.customer.dto.CustomerRegistrationRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
