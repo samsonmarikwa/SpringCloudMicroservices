@@ -2,14 +2,19 @@ package com.samsonmarikwa.customer.service;
 
 import com.samsonmarikwa.clients.fraud.FraudClient;
 import com.samsonmarikwa.clients.fraud.dto.FraudCheckResponse;
+import com.samsonmarikwa.clients.notification.NotificationClient;
+import com.samsonmarikwa.clients.notification.dto.NotificationRequest;
 import com.samsonmarikwa.customer.dto.CustomerRegistrationRequest;
 import com.samsonmarikwa.customer.entity.Customer;
 import com.samsonmarikwa.customer.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
-public record CustomerService(CustomerRepository customerRepository, RestTemplate restTemplate, FraudClient fraudClient) {
+public record CustomerService(
+      CustomerRepository customerRepository,
+      FraudClient fraudClient,
+      NotificationClient notificationClient) {
+   
    public void registerCustomer(CustomerRegistrationRequest request) {
       Customer customer = Customer.builder()
             .firstName(request.firstName())
@@ -36,7 +41,14 @@ public record CustomerService(CustomerRepository customerRepository, RestTemplat
          throw new IllegalStateException("Fraudster detected");
       }
       
-      // todo: send notification
+      // todo: make it async, that is, add to queue
+      // send notification via the notification microservice
+      NotificationRequest notificationRequest =
+            new NotificationRequest(
+                  customer.getId(),
+                  customer.getEmail(),
+                  String.format("Hi %s, welcome to SamsonServices", customer.getFirstName()));
+      notificationClient.sendNotification(notificationRequest);
       
    }
 }
