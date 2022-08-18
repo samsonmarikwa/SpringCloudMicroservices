@@ -7,6 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="notification" />
+        <module name="clients" />
         <module name="eureka-server" />
         <module name="fraud" />
         <module name="customer" />
@@ -19,9 +21,11 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Fraud" options="-parameters" />
+      <module name="clients" options="-parameters" />
       <module name="customer" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="fraud" options="-parameters" />
+      <module name="notification" options="-parameters" />
       <module name="samsonservices" options="" />
     </option>
   </component>
