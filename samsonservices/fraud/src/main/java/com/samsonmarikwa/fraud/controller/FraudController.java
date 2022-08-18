@@ -1,6 +1,6 @@
 package com.samsonmarikwa.fraud.controller;
 
-import com.samsonmarikwa.fraud.dto.FraudCheckResponse;
+import com.samsonmarikwa.clients.fraud.dto.FraudCheckResponse;
 import com.samsonmarikwa.fraud.service.FraudCheckService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
