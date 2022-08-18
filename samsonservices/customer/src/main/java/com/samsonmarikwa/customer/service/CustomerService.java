@@ -22,8 +22,8 @@ public record CustomerService(CustomerRepository customerRepository, RestTemplat
       // save customer record
       customerRepository.save(customer);
       
-      // call fraud microservice
-      String url = "http://localhost:8081/api/v1/fraud-check/{customerId}";
+      // call fraud microservice - FRAUD is the spring.application.name given to the fraud microservice.
+      String url = "http://FRAUD/api/v1/fraud-check/{customerId}";
       FraudCheckResponse fraudCheck = restTemplate.getForObject(url, FraudCheckResponse.class, customer.getId());
       
       if (fraudCheck.isFraudster()) {
