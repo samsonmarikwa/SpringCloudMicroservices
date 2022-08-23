@@ -29,13 +29,13 @@ eureka:
 #These are arbitrary keys used in the config class
 rabbitmq:
 #  exchange - Topic Exchange
-  exchanges:
+  exchange:
     internal: internal.exchange
 #  queue - identifies a queue attached to a consumer (microservice)
   queue:
     notification: notification.queue
-# Used in a binding Config class
-  routing-keys:
+# Used in a binding exchange and the queue
+  routing-key:
     internal-notification: internal.notification.routing-key
 
 
