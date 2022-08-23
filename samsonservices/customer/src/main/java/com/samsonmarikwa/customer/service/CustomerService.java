@@ -1,5 +1,6 @@
 package com.samsonmarikwa.customer.service;
 
+import com.samsonmarikwa.amqp.RabbitMQMessageProducer;
 import com.samsonmarikwa.clients.fraud.FraudClient;
 import com.samsonmarikwa.clients.fraud.dto.FraudCheckResponse;
 import com.samsonmarikwa.clients.notification.NotificationClient;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 public record CustomerService(
       CustomerRepository customerRepository,
       FraudClient fraudClient,
-      NotificationClient notificationClient) {
+      RabbitMQMessageProducer producer) {
    
    public void registerCustomer(CustomerRegistrationRequest request) {
       Customer customer = Customer.builder()
@@ -48,7 +49,10 @@ public record CustomerService(
                   customer.getEmail(),
                   String.format("Hi %s, welcome to SamsonServices", customer.getFirstName()));
    
-      notificationClient.sendNotification(notificationRequest);
+      producer.publish(
+            notificationRequest,
+            "internal.exchange",
+            "internal.notification.routing-key");
       
    }
 }
