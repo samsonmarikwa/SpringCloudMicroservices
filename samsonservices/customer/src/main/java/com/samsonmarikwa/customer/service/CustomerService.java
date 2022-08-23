@@ -41,13 +41,13 @@ public record CustomerService(
          throw new IllegalStateException("Fraudster detected");
       }
       
-      // todo: make it async, that is, add to queue
-      // send notification via the notification microservice
+      // send notification to th notification microservice via RabbitMQ Message Broker
       NotificationRequest notificationRequest =
             new NotificationRequest(
                   customer.getId(),
                   customer.getEmail(),
                   String.format("Hi %s, welcome to SamsonServices", customer.getFirstName()));
+   
       notificationClient.sendNotification(notificationRequest);
       
    }
