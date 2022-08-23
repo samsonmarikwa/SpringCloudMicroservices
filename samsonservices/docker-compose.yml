@@ -42,7 +42,7 @@ services:
     image: rabbitmq:3.9.11-management-alpine
     container_name: rabbitmq
     ports:
-      # Port used for RabbitMQ API for message publishing and the UI Management 
+      # Port used for RabbitMQ API for message publishing and the UI Management
       - "5672:5672"
       - "15672:15672"
 

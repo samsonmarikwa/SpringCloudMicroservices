@@ -11,12 +11,12 @@
         <module name="apigw" />
         <module name="clients" />
         <module name="fraud" />
+        <module name="amqp" />
         <module name="eureka-server" />
         <module name="customer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="amqp" target="17" />
       <module name="Fraud" target="17" />
     </bytecodeTargetLevel>
   </component>
