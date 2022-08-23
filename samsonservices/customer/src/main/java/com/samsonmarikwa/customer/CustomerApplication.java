@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+// specify the base packages in order to inject the producer
 @SpringBootApplication
+      (scanBasePackages = {"com.samsonmarikwa.customer", "com.samsonmarikwa.amqp"})
 @EnableEurekaClient
 @EnableFeignClients(basePackages = "com.samsonmarikwa.clients")
 public class CustomerApplication

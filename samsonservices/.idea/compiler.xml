@@ -10,8 +10,9 @@
         <module name="notification" />
         <module name="apigw" />
         <module name="clients" />
-        <module name="eureka-server" />
         <module name="fraud" />
+        <module name="amqp" />
+        <module name="eureka-server" />
         <module name="customer" />
       </profile>
     </annotationProcessing>
@@ -22,6 +23,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Fraud" options="-parameters" />
+      <module name="amqp" options="-parameters" />
       <module name="apigw" options="-parameters" />
       <module name="clients" options="-parameters" />
       <module name="customer" options="-parameters" />
