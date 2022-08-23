@@ -36,7 +36,8 @@ public class RabbitMQConfig {
       return factory;
    }
    
-   private static MessageConverter getJackson2JsonMessageConverter() {
+   @Bean
+   public MessageConverter getJackson2JsonMessageConverter() {
       return new Jackson2JsonMessageConverter();
    }
 }
