@@ -21,7 +21,10 @@ spring:
   rabbitmq:
     addresses: localhost:5672
 
+# We no longer need eureka service discovery because kubernetes gives this function for free
+# hence, we are disabling it and removing the annotations that enable eureka service discovery
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+    enabled: false
