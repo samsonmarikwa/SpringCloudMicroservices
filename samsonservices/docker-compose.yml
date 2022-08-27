@@ -50,79 +50,81 @@ services:
     networks:
       - spring
 
-  eureka-server:
-    image: samsonmarikwa/eureka-server:latest
-    container_name: eureka-server
-    ports:
-      - "8761:8761"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
+#  Commenting out eureka service because it is not required when using kubernetes. Kubernetes provides service discovery
+#  eureka-server:
+#    image: samsonmarikwa/eureka-server:latest
+#    container_name: eureka-server
+#    ports:
+#      - "8761:8761"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
 
-  apigw:
-    image: samsonmarikwa/apigw:latest
-    container_name: apigw
-    ports:
-      - "8083:8083"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-      - eureka-server
-
-  customer:
-    image: samsonmarikwa/customer:latest
-    container_name: customer
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - zipkin
-      - eureka-server
-      - postgres
-      - rabbitmq
-      - fraud
-
-  fraud:
-    image: samsonmarikwa/fraud:latest
-    container_name: fraud
-    ports:
-      - "8081:8081"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - zipkin
-      - eureka-server
-      - postgres
-      - rabbitmq
-
-  notification:
-    image: samsonmarikwa/notification:latest
-    container_name: notification
-    ports:
-      - "8089:8089"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - zipkin
-      - eureka-server
-      - postgres
-      - rabbitmq
+#  Commenting out API Gateway service because it is not required when using kubernetes.
+#  apigw:
+#    image: samsonmarikwa/apigw:latest
+#    container_name: apigw
+#    ports:
+#      - "8083:8083"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#      - eureka-server
+#
+#  customer:
+#    image: samsonmarikwa/customer:latest
+#    container_name: customer
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - zipkin
+#      - eureka-server
+#      - postgres
+#      - rabbitmq
+#      - fraud
+#
+#  fraud:
+#    image: samsonmarikwa/fraud:latest
+#    container_name: fraud
+#    ports:
+#      - "8081:8081"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - zipkin
+#      - eureka-server
+#      - postgres
+#      - rabbitmq
+#
+#  notification:
+#    image: samsonmarikwa/notification:latest
+#    container_name: notification
+#    ports:
+#      - "8089:8089"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - zipkin
+#      - eureka-server
+#      - postgres
+#      - rabbitmq
 
 networks:
   postgres:

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySources;
 @EnableEurekaClient
 @EnableFeignClients(basePackages = "com.samsonmarikwa.clients")
 @PropertySources({
-      @PropertySource("classpath:clients-${spring.profiles.active}.properties")
+      @PropertySource("classpath:clients-${spring.profiles.active}.yaml")
 })
 public class CustomerApplication
 {
