@@ -1,0 +1,46 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: notification
+
+  datasource:
+    url: jdbc:postgresql://postgres:5432/notification
+    username: admin
+    password: P@ssW0rd
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  zipkin:
+    base-url: http://zipkin:9411
+  rabbitmq:
+    addresses: rabbitmq:5672
+
+# We no longer need eureka service discovery because kubernetes gives this function for free
+# hence, we are disabling it and removing the annotations that enable eureka service discovery
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    enabled: false
+
+#These are arbitrary keys used in the config class
+rabbitmq:
+#  exchange - Topic Exchange
+  exchange:
+    internal: internal.exchange
+#  queue - identifies a queue attached to a consumer (microservice)
+  queue:
+    notification: notification.queue
+# Used in a binding exchange and the queue
+  routing-key:
+    internal-notification: internal.notification.routing-key
+
+
+
+
