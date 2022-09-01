@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgres
+  name: postgres  # Sets Deployment name
   labels:
     app: postgres
 spec:
@@ -19,8 +19,10 @@ spec:
             claimName: postgres-pc-volume-claim
       containers:
         - name: postgres
-          image: postgres
-          imagePullPolicy: IfNotPresent
+          image: postgres # Sets Image
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432 # Exposes container port
           volumeMounts:
             - mountPath: "/var/lib/postgresql/data"
               name: postgres
